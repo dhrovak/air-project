@@ -1,0 +1,31 @@
+[package]
+name = "frame-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dhruv Bhat"]
+description = "Core of AirProject, a Rust-based screensaver for your moments: syncs iCloud Shared Albums to Android TV"
+license = "GPL-3.0-or-later"
+publish = false
+
+[lib]
+name = "frame_core"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "album-cli"
+path = "src/bin/album_cli.rs"
+
+[dependencies]
+uniffi = "0.28"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls"] }
+image = { version = "0.25.5", default-features = false, features = ["jpeg", "png"] }
+fastrand = "2"
+form_urlencoded = "1"
+getrandom = "0.2"
+qrcode = { version = "0.14", default-features = false }
+
+[dev-dependencies]
+tempfile = "3"

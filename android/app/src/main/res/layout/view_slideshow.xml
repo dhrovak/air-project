@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/slot_a"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/background_a"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/image_a"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/slot_b"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0">
+
+        <ImageView
+            android:id="@+id/background_b"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/image_b"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter" />
+    </FrameLayout>
+
+    <!-- TextureView so the poster stays visible until the first video frame. -->
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:resize_mode="fit"
+        app:shutter_background_color="@android:color/transparent"
+        app:surface_type="texture_view"
+        app:use_controller="false" />
+
+    <LinearLayout
+        android:id="@+id/clock_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="48dp"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextClock
+            android:id="@+id/clock"
+            style="@style/SlideshowOverlayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="h:mm"
+            android:format24Hour="HH:mm"
+            android:textSize="56sp" />
+
+        <TextClock
+            android:id="@+id/date"
+            style="@style/SlideshowOverlayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="EEEE, d MMMM"
+            android:format24Hour="EEEE, d MMMM"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/message"
+        style="@style/SlideshowOverlayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="32dp"
+        android:textSize="24sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/hint"
+        style="@style/SlideshowOverlayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|start"
+        android:layout_margin="48dp"
+        android:text="@string/hint_controls"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/paused"
+        style="@style/SlideshowOverlayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="48dp"
+        android:text="@string/paused"
+        android:textSize="22sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/sync_status"
+        style="@style/SlideshowOverlayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="48dp"
+        android:alpha="0.8"
+        android:textSize="14sp"
+        android:visibility="gone" />
+</merge>

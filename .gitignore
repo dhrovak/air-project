@@ -1,0 +1,17 @@
+/target/
+/album-cache/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/.kotlin/
+*.iml
+
+# Signing material
+android/keystore.properties
+*.jks
+*.keystore
+
+.DS_Store
+.vscode/

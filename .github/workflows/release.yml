@@ -1,0 +1,118 @@
+name: Release
+
+# v1.0 on the first push to main, then v1.1, v1.2, ... for each merged pull request.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.next.outputs.tag }}
+      name: ${{ steps.next.outputs.name }}
+      code: ${{ steps.next.outputs.code }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: next
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if [ -n "$(git tag -l 'v1.*' --points-at HEAD)" ]; then
+            echo "This commit is already released."
+            exit 0
+          fi
+          latest=$(git tag -l 'v1.*' | sed -n -E 's/^v1\.([0-9]+)$/\1/p' | sort -n | tail -1)
+          if [ -z "$latest" ]; then
+            minor=0
+          else
+            merged_prs=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/pulls" \
+              --jq '[.[] | select(.merged_at != null and .base.ref == "main")] | length')
+            if [ "$EVENT" != workflow_dispatch ] && [ "$merged_prs" -eq 0 ]; then
+              echo "Not a merged pull request; no release."
+              exit 0
+            fi
+            minor=$((latest + 1))
+          fi
+          {
+            echo "tag=v1.$minor"
+            echo "name=1.$minor"
+            echo "code=$((minor + 1))"
+          } >> "$GITHUB_OUTPUT"
+          echo "Releasing v1.$minor"
+
+  apk:
+    needs: version
+    if: needs.version.outputs.tag != ''
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ needs.version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install NDK
+        run: sdkmanager --install "ndk;27.2.12479018"
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android,armv7-linux-androideabi,x86_64-linux-android
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Install cargo-ndk
+        run: cargo install cargo-ndk --locked
+
+      - name: Run tests
+        run: cargo test -p frame-core --locked
+
+      - name: Decode signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+            echo "SIGNING_STORE_FILE=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+          else
+            echo "::warning::ANDROID_KEYSTORE_BASE64 not set; the APK will be signed with a throwaway debug key."
+          fi
+
+      - name: Build APK
+        working-directory: android
+        env:
+          SIGNING_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          VERSION_NAME: ${{ needs.version.outputs.name }}
+          VERSION_CODE: ${{ needs.version.outputs.code }}
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleRelease "-PappVersionName=$VERSION_NAME" "-PappVersionCode=$VERSION_CODE"
+          cp app/build/outputs/apk/release/AirProject-release.apk "$RUNNER_TEMP/AirProject.apk"
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" "$RUNNER_TEMP/AirProject.apk" \
+            --target "$GITHUB_SHA" --title "AirProject $TAG" --generate-notes

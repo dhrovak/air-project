@@ -1,0 +1,14 @@
+[package]
+name = "uniffi-bindgen"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dhruv Bhat"]
+license = "GPL-3.0-or-later"
+publish = false
+
+[[bin]]
+name = "uniffi-bindgen"
+path = "main.rs"
+
+[dependencies]
+uniffi = { version = "0.28", features = ["cli"] }

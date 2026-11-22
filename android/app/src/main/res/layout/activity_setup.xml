@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111418"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="48dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingEnd="48dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="@string/setup_subtitle"
+            android:textColor="#B0B8C4"
+            android:textSize="18sp" />
+
+        <TextView
+            style="@style/SetupStepTitle"
+            android:text="@string/setup_step1" />
+
+        <TextView
+            android:id="@+id/step1_status"
+            style="@style/SetupStepStatus" />
+
+        <TextView
+            style="@style/SetupStepTitle"
+            android:text="@string/setup_step2" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/step2_status"
+            style="@style/SetupStepStatus" />
+
+        <TextView
+            style="@style/SetupStepTitle"
+            android:text="@string/setup_step3" />
+
+        <TextView
+            android:id="@+id/step3_status"
+            style="@style/SetupStepStatus" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_start"
+                style="@style/SetupButton"
+                android:text="@string/setup_start" />
+
+            <Button
+                android:id="@+id/btn_screensaver"
+                style="@style/SetupButton"
+                android:text="@string/pref_set_screensaver" />
+
+            <Button
+                android:id="@+id/btn_settings"
+                style="@style/SetupButton"
+                android:text="@string/setup_more_settings" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/qr"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:contentDescription="@string/setup_qr_caption"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/qr_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/setup_qr_caption"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/qr_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="#808A96"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

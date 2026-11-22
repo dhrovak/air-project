@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AirProject</string>
+    <string name="dream_label">AirProject (iCloud)</string>
+    <string name="settings_title">AirProject settings</string>
+
+    <string name="cat_album">iCloud shared albums</string>
+    <string name="cat_display">Display</string>
+    <string name="cat_storage">Storage</string>
+    <string name="cat_screensaver">Screensaver and startup</string>
+
+    <string name="pref_album_url">Add album by typing the link</string>
+    <string name="pref_album_url_hint">Paste the shared album\'s public link, e.g. https://photos.icloud.com/shared/album/… or https://www.icloud.com/sharedalbum/#…</string>
+    <string name="pref_sync_now">Sync now</string>
+    <string name="pref_sync_status">Last sync</string>
+    <string name="pref_interval">Time per photo</string>
+    <string name="pref_shuffle">Shuffle</string>
+    <string name="pref_show_clock">Show clock and date</string>
+    <string name="pref_include_videos">Include videos and Live Photos</string>
+    <string name="pref_include_videos_summary">Videos play muted and use more storage</string>
+    <string name="pref_cache_size">Storage for photos</string>
+    <string name="cache_auto">Automatic (recommended)</string>
+    <string name="storage_status">%1$s used of %2$s</string>
+    <string name="storage_status_auto">Automatic · %1$s used of %2$s</string>
+    <string name="pref_set_screensaver">Set as screensaver</string>
+    <string name="pref_start_on_boot">Start slideshow when the TV turns on</string>
+    <string name="pref_start_on_boot_summary">Opens the slideshow by itself after the TV starts</string>
+    <string name="pref_boot_permission">Allow AirProject to start by itself</string>
+    <string name="pref_boot_permission_summary">Needed for the option above. Select, then allow AirProject.</string>
+    <string name="boot_permission_title">Allow starting by itself</string>
+    <string name="boot_permission_instructions">This TV has no screen for this permission. With developer options enabled, run once from a computer on the same Wi-Fi:\n\nadb connect &lt;tv-ip&gt;\nadb shell appops set %1$s SYSTEM_ALERT_WINDOW allow</string>
+    <string name="pref_start_slideshow">Start slideshow now</string>
+
+    <string name="status_never">Not synced yet</string>
+    <string name="status_ok">%1$s · \"%2$s\": %3$d items (+%4$d, −%5$d)</string>
+    <string name="status_skipped">, %1$d skipped (cache full)</string>
+    <string name="status_failed">, %1$d failed</string>
+    <string name="status_error">%1$s · failed: %2$s</string>
+
+    <string name="screensaver_active">AirProject is the active screensaver</string>
+    <string name="screensaver_inactive">Not active · select for setup steps</string>
+    <string name="screensaver_unknown">Select for setup steps</string>
+    <string name="screensaver_dialog_title">Set as screensaver</string>
+    <string name="screensaver_instructions">Easiest option: in settings, turn on \"Start slideshow when the TV turns on\".\n\nGoogle TV usually hides third-party screensavers. If \"Open system settings\" doesn\'t list AirProject, do this once:\n\n1. Settings › System › About › click \"Android TV OS build\" 7 times.\n2. Settings › System › Developer options › enable USB/Network/Wireless debugging (no cable needed).\n3. From a computer on the same Wi-Fi run:\n\nadb connect &lt;projector-ip&gt;\nadb shell settings put secure screensaver_components %1$s\nadb shell settings put secure screensaver_enabled 1\n\nA firmware update may reset this.</string>
+    <string name="open_system_settings">Open system settings</string>
+    <string name="no_system_settings">System screensaver settings are not available on this device</string>
+
+    <string name="sync_started">Sync started</string>
+
+    <string name="error_invalid_link">That isn\'t a shared album link. In Photos, open the shared album, tap Share › Copy Link and use that link.</string>
+    <string name="error_album_unavailable">The album isn\'t available. Check it\'s still shared and that \"Public Website\" is turned on in the album\'s settings.</string>
+    <string name="error_network">Can\'t reach iCloud. Check the TV\'s internet connection; it will try again automatically.</string>
+    <string name="error_protocol">iCloud sent an unexpected reply. It will try again later.</string>
+    <string name="error_storage">Couldn\'t save photos on this TV. Free up some storage space.</string>
+    <string name="error_image">Some photos couldn\'t be prepared for this screen.</string>
+    <string name="error_unknown">Something went wrong. It will try again later.</string>
+
+    <string name="msg_no_album">No album linked yet.\nOpen AirProject from the home screen to set it up.</string>
+    <string name="msg_syncing">Downloading photos…</string>
+    <string name="msg_empty_album">The album has no photos yet.</string>
+    <string name="hint_controls">◀ ▶ Browse    OK Pause    ▼ Settings</string>
+    <string name="paused">❚❚ Paused</string>
+
+    <string name="pref_setup_with_phone">Set up with your phone</string>
+    <string name="pref_setup_with_phone_summary">Scan a QR code to add or remove albums and change settings from your phone</string>
+
+    <string name="setup_subtitle">Your iCloud shared album on the big screen</string>
+    <string name="setup_step1">1   Link your shared albums</string>
+    <string name="setup_step2">2   Download photos</string>
+    <string name="setup_step3">3   Enjoy</string>
+    <string name="setup_not_linked">Scan the QR code with your iPhone camera, then paste an album link.</string>
+    <plurals name="setup_linked">
+        <item quantity="one">✓ %d album linked. Scan again to add another.</item>
+        <item quantity="other">✓ %d albums linked. Scan again to add another.</item>
+    </plurals>
+    <plurals name="status_failed_albums">
+        <item quantity="one">, %d album could not be synced</item>
+        <item quantity="other">, %d albums could not be synced</item>
+    </plurals>
+    <string name="albums_empty">No albums yet</string>
+    <string name="album_not_synced">Album (not synced yet)</string>
+    <string name="album_item_count">%1$d items · select to remove</string>
+    <string name="album_remove_title">Remove "%1$s"?</string>
+    <string name="album_remove_message">Its downloaded photos will be deleted from this TV. The album itself is not affected.</string>
+    <string name="album_remove">Remove</string>
+    <string name="album_added">Album added</string>
+    <string name="album_duplicate">That album is already added</string>
+    <string name="album_removed">Album removed</string>
+    <string name="settings_saved">Settings updated from your phone</string>
+    <string name="album_waiting_sync">Waiting for the first sync</string>
+    <plurals name="phone_album_items">
+        <item quantity="one">%d photo or video</item>
+        <item quantity="other">%d photos and videos</item>
+    </plurals>
+    <string name="progress_album_of">Album %1$d of %2$d</string>
+    <string name="progress_short_downloading_albums">Syncing album %1$d of %2$d · %3$d of %4$d</string>
+    <string name="setup_after_link">Starts automatically once the album is linked.</string>
+    <string name="setup_waiting">Waiting for the first sync…</string>
+    <string name="setup_start">Start slideshow</string>
+    <string name="setup_more_settings">More settings</string>
+    <string name="setup_qr_caption">Scan with your phone camera to add albums and change settings</string>
+    <string name="setup_no_network">Waiting for Wi-Fi…\nThe QR code appears as soon as the TV is connected.\nOr use More settings to type the link.</string>
+
+    <string name="progress_connecting">Connecting to iCloud and checking the album…</string>
+    <string name="progress_preparing">Preparing photos for this screen: %1$d of %2$d</string>
+    <string name="progress_up_to_date">Album is up to date</string>
+    <string name="progress_your_album">your album</string>
+    <string name="progress_downloading">Downloading \"%1$s\": %2$d of %3$d</string>
+    <string name="progress_file_of">%1$s %2$s of %3$s</string>
+    <string name="progress_file">%1$s %2$s</string>
+    <string name="progress_total">%1$s downloaded</string>
+    <string name="progress_finishing">Finishing up…</string>
+    <string name="progress_short_checking">Checking for new photos…</string>
+    <string name="progress_short_preparing">Preparing photos…</string>
+    <string name="progress_short_downloading">Syncing album · %1$d of %2$d</string>
+    <string name="progress_short_finishing">Finishing sync…</string>
+    <string name="kind_photo">photo</string>
+    <string name="kind_video">video</string>
+    <string name="kind_live_photo">Live Photo</string>
+
+    <string name="interval_10">10 seconds</string>
+    <string name="interval_15">15 seconds</string>
+    <string name="interval_30">30 seconds</string>
+    <string name="interval_60">1 minute</string>
+    <string name="interval_120">2 minutes</string>
+    <string name="interval_300">5 minutes</string>
+</resources>

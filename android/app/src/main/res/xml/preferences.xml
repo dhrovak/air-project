@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:key="albums"
+        app:title="@string/cat_album">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="setup_with_phone"
+            app:summary="@string/pref_setup_with_phone_summary"
+            app:title="@string/pref_setup_with_phone" />
+        <EditTextPreference
+            app:dialogMessage="@string/pref_album_url_hint"
+            app:iconSpaceReserved="false"
+            app:key="add_album_url"
+            app:persistent="false"
+            app:title="@string/pref_album_url" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="sync_now"
+            app:title="@string/pref_sync_now" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="sync_status"
+            app:selectable="false"
+            app:title="@string/pref_sync_status" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/cat_display">
+        <ListPreference
+            app:defaultValue="15"
+            app:entries="@array/interval_entries"
+            app:entryValues="@array/interval_values"
+            app:iconSpaceReserved="false"
+            app:key="interval_seconds"
+            app:title="@string/pref_interval"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="shuffle"
+            app:title="@string/pref_shuffle" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="show_clock"
+            app:title="@string/pref_show_clock" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="include_videos"
+            app:summary="@string/pref_include_videos_summary"
+            app:title="@string/pref_include_videos" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/cat_storage">
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/cache_entries"
+            app:entryValues="@array/cache_values"
+            app:iconSpaceReserved="false"
+            app:key="max_cache_mb"
+            app:title="@string/pref_cache_size" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/cat_screensaver">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="set_screensaver"
+            app:title="@string/pref_set_screensaver" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="start_on_boot"
+            app:summary="@string/pref_start_on_boot_summary"
+            app:title="@string/pref_start_on_boot" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="false"
+            app:key="boot_permission"
+            app:persistent="false"
+            app:summary="@string/pref_boot_permission_summary"
+            app:title="@string/pref_boot_permission" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="start_slideshow"
+            app:title="@string/pref_start_slideshow" />
+    </PreferenceCategory>
+</PreferenceScreen>
