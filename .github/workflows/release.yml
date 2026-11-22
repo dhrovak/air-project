@@ -69,10 +69,10 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      # The action's default package list includes "tools", which no longer exists.
       - uses: android-actions/setup-android@v3
-
-      - name: Install NDK
-        run: sdkmanager --install "ndk;27.2.12479018"
+        with:
+          packages: "platform-tools platforms;android-35 ndk;27.2.12479018"
 
       - uses: dtolnay/rust-toolchain@stable
         with:
